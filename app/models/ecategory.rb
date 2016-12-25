@@ -1,0 +1,2 @@
+class Ecategory < Category
+end
