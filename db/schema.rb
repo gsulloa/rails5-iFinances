@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20161224232643) do
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "type"
+    t.boolean  "deletable"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20161224232643) do
     t.datetime "updated_at",  null: false
     t.index ["account_id"], name: "index_transactions_on_account_id", using: :btree
     t.index ["category_id"], name: "index_transactions_on_category_id", using: :btree
+    t.index ["type"], name: "index_transactions_on_type", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

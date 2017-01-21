@@ -1,4 +1,4 @@
-class IncomeController < ApplicationController
+class IncomesController < ApplicationController
   before_action :set_income, only: [:edit, :update, :destroy]
   def new
     @income = Income.new
@@ -6,7 +6,6 @@ class IncomeController < ApplicationController
 
   def create
     @income = Income.new(income_params)
-
     respond_to do |format|
       if @income.save
         format.html { redirect_to @income, notice: 'Income was successfully created.' }
@@ -42,11 +41,11 @@ class IncomeController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_income
       @income = Income.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def income_params
       params.require(:income).permit(:amount, :category_id, :commit, :when)

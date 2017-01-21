@@ -1,4 +1,4 @@
-class ExpenseController < ApplicationController
+class ExpensesController < ApplicationController
   before_action :set_expense, only: [:edit, :update, :destroy]
   def new
     @expense = Expense.new
