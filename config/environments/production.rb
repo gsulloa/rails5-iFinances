@@ -23,9 +23,11 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  ########FOR HEROKU
+  config.serve_static_assets = true
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  ########FOR HEROKU
+  config.assets.compile = true
   # Generate digests for assets URLs
   config.assets.digest = true
 
@@ -36,7 +38,8 @@ Rails.application.configure do
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  ########FOR HEROKU
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
