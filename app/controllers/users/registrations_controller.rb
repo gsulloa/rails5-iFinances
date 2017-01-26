@@ -10,7 +10,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      super
-     default_acc = Account.create!(:name => "Default", :user => resource, :default => true)
+     default_acc = Account.create!(name: "Default", user: resource, default: true)
+     Cdefault.all.each do |category|
+      Category.create!(name: category.name, 
+        type: category.type == "Icdefault" ? "Icategory" : "Ecategory", default: category.default,
+        user: resource)
+     end
    end
 
   # GET /resource/edit

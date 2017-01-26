@@ -9,15 +9,15 @@
 
 admin = User.create(email: 'admin@ifinances.io', password: '1q2w3e4r5tifinances', role: 1)
 
-general_icategory = Icdefault.create(name: "General", default: true)
-general_ecategory = Ecdefault.create(name: "General", default: true)
+general_icategory = Icdefault.create!(name: "General", default: true)
+general_ecategory = Ecdefault.create!(name: "General", default: true)
 
 ["Sueldo", "Regalo", "Reembolso", "Inversion"].each do |name|
-	Icdefault.create(name: name)
+	Icdefault.create!(name: name)
 end
 
 ["Ropa", "Comida", "Transporte", "Casa", "Vacaciones", "Salud", "Entretenimiento"].each do |name|
-	Ecdefault.create(name: name)
+	Ecdefault.create!(name: name)
 end
 
 

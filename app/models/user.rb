@@ -10,4 +10,17 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   enum role: [ :user, :admin ]
+
+  def icategories
+  	categories.select {
+  		|category|
+  		category.type == "Icategory"
+  	}
+  end
+  def ecategories
+  	categories.select {
+  		|category|
+  		category.type == "Ecategory"
+  	}
+  end
 end
