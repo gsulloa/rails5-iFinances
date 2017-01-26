@@ -4,8 +4,15 @@ source 'https://rubygems.org'
 #  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
 #  "https://github.com/#{repo_name}.git"
 #end
-# Using devise for Auth
+
+# Use bootstrap forms
+gem 'bootstrap_form'
+
+# Using devise for Authentication
 gem 'devise'
+
+# Using pundit for authorization
+gem 'pundit'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'

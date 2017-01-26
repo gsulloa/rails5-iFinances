@@ -1,0 +1,18 @@
+<%= bootstrap_form_for(@cdefault, url: path) do |f| %>
+  <% if @cdefault.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cdefault.errors.count, "error") %> prohibited this @cdefault from being saved:</h2>
+
+      <ul>
+      <% @cdefault.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.text_field :name %> 
+  <%= f.select :type, [["Income Category","Icdefault"], ["Expense Category","Ecdefault"]] %> 
+  <%= f.check_box :default %>
+  <%= f.submit "Send"%> 
+<% end %>
+<%= link_to "Volver", admin_index_path %>

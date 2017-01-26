@@ -1,0 +1,24 @@
+<h1>Default Categories</h1>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Default</th>
+		<th>Actions</th>
+	</tr>
+	<% @cdefaults.each do |cdefault| %>
+	<tr>
+		<td><%= cdefault.name %></td>
+		<td><%= cdefault.type %></td>
+		<td><%= cdefault.default ? "yes" : "no" %></td>
+		<td>
+			<ul>
+				<li><%= link_to "Edit", edit_cdefaults_path(:id => cdefault.id) %></li>
+				<li><%= link_to "Delete", destroy_cdefaults_path(:id => cdefault.id), :method => "DELETE" %></li>
+			</ul>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<%= link_to "New Default Category", new_cdefaults_path %>
