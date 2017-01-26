@@ -8,9 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+     default_acc = Account.create!(:name => "Default", :user => resource, :default => true)
+   end
 
   # GET /resource/edit
   # def edit
