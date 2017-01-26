@@ -1,0 +1,2 @@
+class Icdefault < Cdefault
+end

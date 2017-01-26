@@ -1,0 +1,2 @@
+class Ecdefault < Cdefault
+end
