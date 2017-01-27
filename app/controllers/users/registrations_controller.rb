@@ -16,6 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         type: category.type == "Icdefault" ? "Icategory" : "Ecategory", default: category.default,
         user: resource)
      end
+     configuration = UserConfiguration.create!(account: default_acc)
+     resource.user_configuration = configuration
    end
 
   # GET /resource/edit

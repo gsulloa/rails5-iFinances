@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126045756) do
+ActiveRecord::Schema.define(version: 20170127044409) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20170126045756) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "configurations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["account_id"], name: "index_configurations_on_account_id", using: :btree
+  end
+
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "amount"
     t.integer  "category_id"
@@ -51,6 +59,15 @@ ActiveRecord::Schema.define(version: 20170126045756) do
     t.index ["account_id"], name: "index_transactions_on_account_id", using: :btree
     t.index ["category_id"], name: "index_transactions_on_category_id", using: :btree
     t.index ["type"], name: "index_transactions_on_type", using: :btree
+  end
+
+  create_table "user_configurations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "account_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_user_configurations_on_account_id", using: :btree
+    t.index ["user_id"], name: "index_user_configurations_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

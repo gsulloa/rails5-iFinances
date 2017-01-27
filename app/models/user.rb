@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :accounts
   has_many :categories
 
+  has_one :user_configuration
+
   validates :email, presence: true
 
   enum role: [ :user, :admin ]
