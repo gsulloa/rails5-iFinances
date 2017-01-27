@@ -1,15 +1,21 @@
 <h1>Default Categories</h1>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>Default</th>
-		<th>Actions</th>
-	</tr>
+<%= link_to "New Default Category", new_cdefaults_path, :class => "btn btn-primary pull-right" %>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th># Id</th>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Default</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
 	<% @cdefaults.each do |cdefault| %>
-	<tr>
+	<tr class="<%= cdefault.type == "Icdefault" ? "success" : "danger" %>">
+		<td><%= cdefault.id %></td>
 		<td><%= cdefault.name %></td>
-		<td><%= cdefault.type %></td>
+		<td><%= cdefault.type == "Icdefault" ? "Incomes" : "Expenses" %></td>
 		<td><%= cdefault.default ? "yes" : "no" %></td>
 		<td>
 			<ul>
@@ -19,6 +25,6 @@
 		</td>
 	</tr>
 	<% end %>
+	</tbody>
 </table>
 
-<%= link_to "New Default Category", new_cdefaults_path %>

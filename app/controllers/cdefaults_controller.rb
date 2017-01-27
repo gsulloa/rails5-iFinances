@@ -13,7 +13,7 @@ class CdefaultsController < ApplicationController
 
     respond_to do |format|
       if @cdefault.save
-        format.html { redirect_to admin_index_path, notice: 'Cdefault was successfully created.' }
+        format.html { redirect_to admin_index_path, :flash => { :success => "Default category # #{@cdefault.id} was successfully created." } }
         format.json { render :show, status: :created, location: admin_index_path }
       else
         format.html { render :new }
@@ -28,7 +28,7 @@ class CdefaultsController < ApplicationController
   def update
     respond_to do |format|
       if @cdefault.update(cdefault_params)
-        format.html {redirect_to admin_index_path, notice: 'Cdefault was successfully updated.' }
+        format.html {redirect_to admin_index_path, :flash => { :success => "Default category # #{@cdefault.id} was successfully updated." }  }
         format.json {render :show, status: :ok, location: admin_index_path }
       else
         format.html { render :edit }
@@ -41,10 +41,10 @@ class CdefaultsController < ApplicationController
     respond_to do |format|
       if @cdefault.destroy?
         @cdefault.destroy
-        format.html { redirect_to admin_index_url, notice: 'Cdefault was successfully destroyed.' }
+        format.html { redirect_to admin_index_url, :flash => {:success => "Default category was successfully destroyed." } }
         format.json { head :no_content }
       else
-        format.html { redirect_to admin_index_url, notice: 'Cdefault can not be destroyed.' }
+        format.html { redirect_to admin_index_url, :flash => {:error => "Default category # #{@cdefault.id} can not be destroyed." } }
         format.json { head :no_content }
       end
     end
@@ -58,7 +58,13 @@ class CdefaultsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cdefault_params
-      params.require(:cdefault).permit(:name, :default, :type)
+      if params.has_key?(:cdefault)
+        params.require(:cdefault).permit(:name, :default, :type)
+      elsif params.has_key?(:icdefault)
+        params.require(:icdefault).permit(:name, :default, :type)
+      elsif params.has_key?(:ecdefault)
+        params.require(:ecdefault).permit(:name, :default, :type)
+      end
     end
 
     def new_cdefault

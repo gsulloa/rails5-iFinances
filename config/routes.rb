@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get     'admin',                              to: 'cdefaults#index',  as: "admin_index"
   get     'admin/defaults_categories/new',      to: 'cdefaults#new',    as: "new_cdefaults"
-  post    'admin/defaults_categories',          to: 'cdefaults#create', as: "create_cdefaults"
+  post    'admin/defaults_categories/new',          to: 'cdefaults#create', as: "create_cdefaults"
   get     'admin/defaults_categories/:id/edit', to: 'cdefaults#edit',   as: "edit_cdefaults"
-  put     'admin/defaults_categories/:id',      to: 'cdefaults#update', as: "update_cdefaults"
+  patch     'admin/defaults_categories/:id/edit',      to: 'cdefaults#update', as: "update_cdefaults"
   delete  'admin/defaults_categories/:id',      to: 'cdefaults#destroy',as: "destroy_cdefaults"
   root    'transactions#index'
   resources :expenses

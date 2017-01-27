@@ -6,7 +6,7 @@
 <!-- Bootstrap css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application/application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Bootstrap js -->
@@ -15,9 +15,24 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-right navbar-btn") %>        
+    </nav>
+    <div class="container">
+      <% if flash[:success] %>
+      <div class="alert alert-success" role="alert"><%= flash[:success] %></div>
+      <% end %>
+      <% if flash[:info] %>
+      <div class="alert alert-info" role="alert"><%= flash[:info] %></div>
+      <% end %>
+      <% if flash[:warning] %>
+      <div class="alert alert-warning" role="alert"><%= flash[:warning] %></div>
+      <% end %>
+      <% if flash[:error] %>
+      <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+      <% end %>
     <%= yield %>
-  	<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
     </div>
   </body>
 </html>
