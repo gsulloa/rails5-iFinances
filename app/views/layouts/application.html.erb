@@ -20,6 +20,17 @@
       <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-danger navbar-right navbar-btn") %>        
       <% if !current_user.admin? %>
       <p class="navbar-right navbar-text">Selected Account: <strong><%= current_user.user_configuration.account.name %></strong></p>
+      <ul class="nav navbar-nav">
+        <li>
+        <%= link_to('Index', root_path) %>        
+        </li>
+        <li>
+        <%= link_to('Income Category', icategories_path) %>        
+        </li>
+                <li>
+        <%= link_to('Expense Category', ecategories_path) %>        
+        </li>
+      </ul>
       <% end %>
     </nav>
     <div class="container">

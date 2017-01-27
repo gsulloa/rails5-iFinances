@@ -1,0 +1,2 @@
+module EcategoryHelper
+end

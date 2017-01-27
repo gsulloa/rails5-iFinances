@@ -1,0 +1,16 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @categories.each do |category| %>
+		<tr>
+			<td><%= category.name %></td>
+			<td><%= link_to "Edit",  polymorphic_path([:edit,category]) %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

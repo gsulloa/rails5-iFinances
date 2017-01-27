@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  resources :icategories
+  resources :ecategories
   get     'admin',                              to: 'cdefaults#index',  as: "admin_index"
   get     'admin/defaults_categories/new',      to: 'cdefaults#new',    as: "new_cdefaults"
   post    'admin/defaults_categories/new',          to: 'cdefaults#create', as: "create_cdefaults"
