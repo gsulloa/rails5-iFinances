@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(@expense, layout: :horizontal, label_col: "col-xs-2", control_col: "col-xs-10") do |f| %>
+    <%= f.number_field :amount %>
+    <%= f.select :category_id,current_user.ecategories.map!{ |category| [category.name, category.id] } %>
+    <%= f.text_area :commit %>
+    <%= f.date_select :when %>
+    <%= f.form_group do %>
+    <%= f.submit %>
+    <% end %>
+<% end %>
+<%= link_to "Volver", root_path, :class => "btn btn-primary col-xs-offset-2" %>

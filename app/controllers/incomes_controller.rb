@@ -6,9 +6,10 @@ class IncomesController < ApplicationController
 
   def create
     @income = Income.new(income_params)
+    @income.account = current_user.user_configuration.account
     respond_to do |format|
       if @income.save
-        format.html { redirect_to @income, notice: 'Income was successfully created.' }
+        format.html { redirect_to root_url, flash: { :success => 'Income was successfully created.' } }
         format.json { render :show, status: :created, location: @income }
       else
         format.html { render :new }

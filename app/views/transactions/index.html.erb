@@ -2,10 +2,11 @@
 
 <h1>Transactions</h1>
 
-<table>
+<table class="table striped-table">
   <thead>
     <tr>
       <th>Amount</th>
+      <th>Type </th>
       <th>Category</th>
       <th>Commit</th>
       <th>When</th>
@@ -14,9 +15,16 @@
   </thead>
 
   <tbody>
+    <% total = 0 %>
     <% @transactions.each do |transaction| %>
+    <% if transaction.type == "Income" %>
+      <% total += transaction.amount %>
+    <% else %>
+      <% total -= transaction.amount %>
+    <% end %>
       <tr>
         <td><%= transaction.amount %></td>
+        <td><%= transaction.type %> </td>
         <td><%= transaction.category.name %></td>
         <td><%= transaction.commit %></td>
         <td><%= transaction.when %></td>
@@ -30,5 +38,7 @@
 
 <br>
 
+<b>Balance</b>: <%= total %>
+<br>
 <%= link_to 'New Income', new_income_path %>
 <%= link_to 'New Expense', new_expense_path %>

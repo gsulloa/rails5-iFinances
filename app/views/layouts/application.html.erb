@@ -17,7 +17,10 @@
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-right navbar-btn") %>        
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-danger navbar-right navbar-btn") %>        
+      <% if !current_user.admin? %>
+      <p class="navbar-right navbar-text">Selected Account: <strong><%= current_user.user_configuration.account.name %></strong></p>
+      <% end %>
     </nav>
     <div class="container">
       <% if flash[:success] %>

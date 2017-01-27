@@ -6,10 +6,10 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
-
+    @expense.account = current_user.user_configuration.account
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
+        format.html { redirect_to root_url, flash: { :success => 'Expense was successfully created.' } }
         format.json { render :show, status: :created, location: @expense }
       else
         format.html { render :new }
