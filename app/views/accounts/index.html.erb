@@ -1,0 +1,24 @@
+<h1>My Accounts</h1>
+<%= link_to "New Account", new_account_path, :class => "btn btn-primary pull-right" %>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @accounts.each do |account| %>
+		<tr <% if account.user_configuration %>class="success"<% end %>>
+			<td><%= account.name %></td>
+			<td>
+				<ul>
+					<li><%= link_to "Edit",  edit_account_path(:id => account.id) %></li>
+					<% if !account.user_configuration %><li><%= link_to "Select", select_account_path(:id => account.id), :method => "post" %></li><% end %>
+					<li><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure? Your transactions will trasfer to your default account' } %></li>
+				</ul>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
