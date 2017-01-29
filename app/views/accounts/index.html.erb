@@ -13,6 +13,7 @@
 			<td><%= account.name %></td>
 			<td>
 				<ul>
+					<li><%= link_to "Show", account_transactions_path(:account_id => account.id) %></li>
 					<li><%= link_to "Edit",  edit_account_path(:id => account.id) %></li>
 					<% if !account.user_configuration %><li><%= link_to "Select", select_account_path(:id => account.id), :method => "post" %></li><% end %>
 					<li><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure? Your transactions will trasfer to your default account' } %></li>

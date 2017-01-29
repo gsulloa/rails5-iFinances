@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   get     'admin/defaults_categories/:id/edit',   to: 'cdefaults#edit',   as: "edit_cdefaults"
   patch     'admin/defaults_categories/:id/edit', to: 'cdefaults#update', as: "update_cdefaults"
   delete  'admin/defaults_categories/:id',        to: 'cdefaults#destroy',as: "destroy_cdefaults"
-  root    'transactions#index'
+  get     'transactions',                         to: 'transactions#index',as: "transactions"
+  root    'transactions#general_analytics'
   post     'accounts/:id/select',                  to: 'accounts#select',  as: "select_account"
   resources :accounts
+  resources :accounts do
+    resources :transactions
+  end
   resources :icategories
   resources :ecategories
   resources :expenses

@@ -1,0 +1,77 @@
+<h1>
+	analytics
+</h1>
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		<div id="general" style="min-width: 310px; height: 400px; max-width: 600px;
+		 margin: 0 auto"></div>
+	</div>
+	<div class="col-md-6 col-xs-12">
+		<h1 class="text-center">Balance</h1>
+		<table class="table">
+			<tr>
+				<th>Incomes</th>
+				<td style="color: #00b300"><%= number_to_currency @total_data[:incomes] %></td>
+			</tr>
+			<tr>
+				<th>Expenses</th>
+				<td style="color: #e60000"><%= number_to_currency @total_data[:expenses] %></td>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<td style="color: <% if @total_data[:incomes] - @total_data[:expenses] > 0 %>#00b300 <% else %> #e60000 <% end %>"><%= number_to_currency @total_data[:incomes] - @total_data[:expenses] %></td>
+			</tr>
+		</table>
+		<div class="text-center">
+<%= link_to 'New Income', new_income_path, :class => "btn btn-success" %>
+<%= link_to 'New Expense', new_expense_path, :class => "btn btn-danger" %>
+</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+
+    $(document).ready(function () {
+
+        // Build the chart
+        Highcharts.chart('general', {
+        	colors:[
+        		"#00b300", "#e60000"
+        	],
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Total Balance'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Amount percentage',
+                colorByPoint: true,
+                data: [{
+                    name: "Incomes",
+                    y: <%= @total_data[:incomes] %>
+                }, {
+                	name: 'Expenses',
+                	y: <%= @total_data[:expenses] %>
+                }]
+            }]
+        });
+    });
+});
+</script>
