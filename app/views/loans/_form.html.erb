@@ -1,4 +1,5 @@
 <%= bootstrap_form_for(@transaction, url: path) do |f| %>
   <%= f.number_field :amount %> 
+  <%= f.text_area :commit %> 
   <%= f.submit %> 
 <% end %>

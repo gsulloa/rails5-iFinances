@@ -31,9 +31,9 @@ class LoansController < ApplicationController
       if @transaction.save
         case type
         when :lend
-          Loan.create! :expense => @transaction, :account => current_user.user_configuration.account
+          Loan.create! :expense => @transaction, :account => current_user.user_configuration.account, :commit => @transaction.commit
         when :lend_me
-          Loan.create! :income => @transaction, :account => current_user.user_configuration.account
+          Loan.create! :income => @transaction, :account => current_user.user_configuration.account, :commit => @transaction.commit
         end
         format.html { redirect_to loans_path, :flash => { :success => "Loan was successfully created." } }
       else
@@ -46,9 +46,9 @@ class LoansController < ApplicationController
   def finish
     @loan = Loan.find params[:id]
     if @loan.income
-      @loan.expense = Expense.create! :amount => @loan.income.amount, :account => current_user.user_configuration.account, :when => Time.now, :category => Ecategory.where(:default => true, :user => current_user).second
+      @loan.expense = Expense.create! :amount => @loan.income.amount, :account => current_user.user_configuration.account, :when => Time.now, :category => Ecategory.where(:default => true, :user => current_user).second, :commit => @loan.commit
     else
-      @loan.income = Income.create! :amount => @loan.expense.amount, :account => current_user.user_configuration.account, :when => Time.now, :category => Icategory.where(:default => true, :user => current_user).second
+      @loan.income = Income.create! :amount => @loan.expense.amount, :account => current_user.user_configuration.account, :when => Time.now, :category => Icategory.where(:default => true, :user => current_user).second, :commit => @loan.commit
     end
     respond_to do |format|
       if @loan.save
@@ -62,9 +62,9 @@ class LoansController < ApplicationController
 
   private
   def lend_params
-    params.require(:expense).permit(:amount)
+    params.require(:expense).permit(:amount, :commit)
   end
   def lend_me_params
-    params.require(:income).permit(:amount)
+    params.require(:income).permit(:amount, :commit)
   end
 end
