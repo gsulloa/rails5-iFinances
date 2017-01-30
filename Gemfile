@@ -5,6 +5,10 @@ source 'https://rubygems.org'
 #  "https://github.com/#{repo_name}.git"
 #end
 
+# Working with excel
+gem 'roo'
+gem 'iconv'
+
 # Use bootstrap forms
 gem 'bootstrap_form'
 

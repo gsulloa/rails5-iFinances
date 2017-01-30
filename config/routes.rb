@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'import',                                  to: 'import#create',    as: "create_import"
+  get 'import',                                   to: 'import#new',       as: "new_import"
+
   get 'loans',                                    to: 'loans#index',      as: "loans"
   get 'loans/lend',                               to: 'loans#lend',       as: "lend_loans"
   get 'loans/lend_me',                            to: 'loans#lend_me',    as: "lend_me_loans"
