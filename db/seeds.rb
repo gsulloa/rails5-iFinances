@@ -10,7 +10,9 @@
 admin = User.create(email: 'admin@ifinances.io', password: '1q2w3e4r5tifinances', role: 1)
 
 general_icategory = Icdefault.create!(name: "General", default: true)
+prestamos_icategory = Icdefault.create!(name: "Prestamos", default: true)
 general_ecategory = Ecdefault.create!(name: "General", default: true)
+prestamos_ecategory = Ecdefault.create!(name: "Prestamos", default: true)
 
 ["Sueldo", "Regalo", "Reembolso", "Inversion"].each do |name|
 	Icdefault.create!(name: name)

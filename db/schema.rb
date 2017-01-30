@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170129223959) do
+ActiveRecord::Schema.define(version: 20170129235912) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -52,8 +52,12 @@ ActiveRecord::Schema.define(version: 20170129223959) do
     t.datetime "updated_at", null: false
     t.integer  "expense_id"
     t.integer  "income_id"
+    t.integer  "user_id"
+    t.integer  "account_id"
+    t.index ["account_id"], name: "index_loans_on_account_id", using: :btree
     t.index ["expense_id"], name: "expense_id", using: :btree
     t.index ["income_id"], name: "fk_rails_efd1bc630d", using: :btree
+    t.index ["user_id"], name: "index_loans_on_user_id", using: :btree
   end
 
   create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -99,8 +103,10 @@ ActiveRecord::Schema.define(version: 20170129223959) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "categories", "users"
+  add_foreign_key "loans", "accounts"
   add_foreign_key "loans", "transactions", column: "expense_id"
   add_foreign_key "loans", "transactions", column: "income_id"
+  add_foreign_key "loans", "users"
   add_foreign_key "transactions", "accounts"
   add_foreign_key "transactions", "categories"
 end

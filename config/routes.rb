@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'loans',                                    to: 'loans#index',      as: "loans"
+  get 'loans/lend',                               to: 'loans#lend',       as: "lend_loans"
+  get 'loans/lend_me',                            to: 'loans#lend_me',    as: "lend_me_loans"
+  post 'loans/lend',                              to: 'loans#create_lend',as: "create_lend_loans"
+  post 'loans/lend_me',                           to: 'loans#create_lend_me', as: "create_lend_me_loans"
+  post 'loans/:id/finish',                        to: 'loans#finish',     as: "finish_loans"
+
   get     'admin',                                to: 'cdefaults#index',  as: "admin_index"
   get     'admin/defaults_categories/new',        to: 'cdefaults#new',    as: "new_cdefaults"
   post    'admin/defaults_categories/new',        to: 'cdefaults#create', as: "create_cdefaults"

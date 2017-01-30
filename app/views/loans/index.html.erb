@@ -1,0 +1,42 @@
+<h1 class="text-center">Loans</h1>
+<hr>
+<div class="row">
+	<div class="col-xs-12 col-md-6"> 
+		<h1 class="text-center">Lended</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Amount</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% current_user.user_configuration.account.loans.where(:income => nil).each do |loan| %>
+				<tr>
+					<td><%= loan.expense.amount %></td>
+					<td><%= link_to "Finish", finish_loans_path(:id => loan.id), :method => "post" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<h1 class="text-center">Lended to me</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Amount</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% current_user.user_configuration.account.loans.where(:expense => nil).each do |loan| %>
+				<tr>
+					<td><%= loan.income.amount %></td>
+					<td><%= link_to "Finish", finish_loans_path(:id => loan.id), :method => "post" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
